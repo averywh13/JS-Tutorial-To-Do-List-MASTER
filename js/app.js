@@ -15,6 +15,14 @@ const LINE_THROUGH = "lineThrough";
 let LIST = []
 ,id = 0;
 
+//Get item from local storage
+let data = localStorage.getItem("TODO");
+
+//Check if data is not empty
+
+//Add item to local storage
+localStorage.setItem("TODO", JSON.stringify(LIST));
+
 // Show today's date
 const options = { weekday: "long", month: "short", day: "numeric" };
 const today = new Date();
@@ -53,6 +61,10 @@ document.addEventListener("keyup", function(even) {
         trash: false
 
       });
+//Add item to local storage
+localStorage.setItem("TODO", JSON.stringify(LIST));
+
+
       id++;
       
     }
@@ -81,9 +93,11 @@ list.addEventListener("click", function(event){
 
     if(elementJob == "complete"){
         completeToDo(element);
-    }else if(elementJob == "remove"){
+    }else if(elementJob == "delete"){
         removeToDo(element);
     }
+    //Add item to local storage
+localStorage.setItem("TODO", JSON.stringify(LIST));
 })
 
 
