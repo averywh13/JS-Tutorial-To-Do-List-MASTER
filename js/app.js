@@ -28,8 +28,17 @@ if(data){
     id = 0;
 }
 
-//Add item to local storage
-localStorage.setItem("TODO", JSON.stringify(LIST));
+//Load items to the user's interface
+function loadList(array){
+    array.forEach(function(item){
+        addToDo(item.name, item.id, item.done, item.trash);
+    })
+}
+//clear the local storage
+clear.addEventListener("click", function(){
+    localStorage.clear();
+    location.reload();
+})
 
 // Show today's date
 const options = { weekday: "long", month: "short", day: "numeric" };
