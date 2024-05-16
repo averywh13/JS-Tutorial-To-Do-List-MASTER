@@ -12,7 +12,8 @@ const UNCHECK = "fa-circle-thin";
 const LINE_THROUGH = "lineThrough";
 
 //Variables
-let LIST, id;
+let LIST = []
+,id = 0;
 
 // Show today's date
 const options = { weekday: "long", month: "short", day: "numeric" };
@@ -44,11 +45,32 @@ document.addEventListener("keyup", function(even) {
     const toDo = input.value;
     // If the input is not empty
     if (toDo) {
-      addToDo(toDo);
-      LIST.push()
+      addToDo(toDo, id, false, false);
+      LIST.push({
+        name: toDo,
+        id: id,
+        done: false,
+        trash: false
+
+      });
+      id++;
+      
     }
     input.value = "";
   }
 });
-// Example usage
-addToDo("Coffee", 1, true, false,);
+
+//Complete the to-do function
+function completeToDo(element){
+    element.classList.toggle(CHECK);
+    element.classList.toggle(UNCHECK);
+    element.parentNode.querySelector(".text").classList.toggle(LINE_THROUGH)
+
+    LIST[element.id].done = LIST[element.id].done ? false:true;
+}
+
+
+
+
+
+
